@@ -2,6 +2,8 @@
 
 Each example is a full, ready-to-paste output as it would be given to a user. Copy the structure and adapt for the user's actual concept.
 
+**On rhyme craft:** examples 1 and 2 below were rewritten to demonstrate proper **คำคล้องจอง** (rhyme schemes per `khlong-jong-rhyme.md`) — note how every chorus has a clear AABB or AABA end-rhyme on a single vowel family, plus internal สัมผัสใน per line. Examples 3–5 are older drafts kept for genre coverage but should be reworked to match this rhyme density when used as templates.
+
 ---
 
 ## Example 1 — Thai mainstream pop ballad (เศร้า, รอคอย, female lead)
@@ -9,6 +11,11 @@ Each example is a full, ready-to-paste output as it would be given to a user. Co
 **User concept:** เพลงเศร้าเรื่องคนที่ยังคิดถึงแฟนเก่าและรอให้กลับมา ผู้หญิงร้อง 3:30 นาที
 
 ### 🎵 ยังเก็บเธอไว้ในใจ
+
+**Rhyme blueprint (chosen before writing):**
+- Hook word = "ใจ" → chorus rhyme family = **/ai/ open** (ใจ, ไป, ไกล, ไหน, ใหม่)
+- Verse rhyme family = **/ɤː/** (เธอ, เผลอ, เจอ, เพ้อ) + **/aːi/** (หาย, สาย) — ABAB scheme
+- Pre-chorus uses **/aː/** open (มา, หา, ครา) — couplet, sets up chorus
 
 #### Styles
 ```
@@ -21,55 +28,55 @@ Thai pop, modern T-pop ballad, bittersweet nostalgic, fingerpicked acoustic guit
 [Soft fingerpicked acoustic guitar]
 
 [Verse 1]
-ในคืนที่ฟ้ายังเงียบงัน
-ใจฉันยังคิดถึงเธอเสมอ
-แม้เวลาจะผ่านไปนานเท่าไร
-ภาพเธอก็ไม่เคยจางหาย
+ในคืนที่ฟ้ายังไม่สาย
+หัวใจฉันยังคิดถึงเธอเสมอ
+แม้เวลาผ่านมาเนิ่นนานสักเท่าไร
+ภาพของเธอก็ไม่เคยเลือนเผลอ
 
 [Pre-Chorus]
-และทุกครั้งที่ฝนตกลงมา
+และทุกครั้งที่ฝนพรำลงมา
 (ลงมา ลงมา)
-หัวใจก็เปียกชื้นอีกครั้ง
+หัวใจฉันก็เปียกชื้นทุกครา
 
 [Chorus]
-อยากบอกเธอว่าฉันยังรอ
-(ยังรอ ยังรอ)
-อยากให้เธอรู้ว่าฉันยังคิดถึง
-(ยังคิดถึง)
+อยากบอกเธอว่าฉันยังคอย
+(ยังคอย ยังคอย)
+อยากให้เธอรู้ใจฉันสักหน่อย
+(สักหน่อย สักหน่อย)
 แม้วันเวลาจะพาเราห่างไกล
-ฉันยังเก็บเธอไว้ในใจเสมอ
+ฉันยังเก็บเธอเอาไว้ข้างใน ในใจ
 
 [Verse 2]
-ภาพถ่ายใบเก่าที่ยังเก็บไว้
-รอยยิ้มของเธอในวันนั้น
-ทุกๆ คำที่เธอเคยบอก
-ยังก้องอยู่ในความทรงจำ
+ภาพถ่ายใบเก่าที่ยังเก็บใกล้
+รอยยิ้มของเธอที่ยังจำเสมอ
+ทุกๆ คำที่เคยพูดและเข้าใจ
+ยังก้องอยู่ข้างในใจที่ยังเพ้อ
 
 [Pre-Chorus]
 และทุกครั้งที่ดาวร่วงลงมา
 (ลงมา ลงมา)
-หัวใจก็แหลกสลายอีกครั้ง
+หัวใจฉันก็แหลกสลายทุกครา
 
 [Chorus]
-อยากบอกเธอว่าฉันยังรอ
-(ยังรอ ยังรอ)
-อยากให้เธอรู้ว่าฉันยังคิดถึง
-(ยังคิดถึง)
+อยากบอกเธอว่าฉันยังคอย
+(ยังคอย ยังคอย)
+อยากให้เธอรู้ใจฉันสักหน่อย
+(สักหน่อย สักหน่อย)
 แม้วันเวลาจะพาเราห่างไกล
-ฉันยังเก็บเธอไว้ในใจเสมอ
+ฉันยังเก็บเธอเอาไว้ข้างใน ในใจ
 
 [Bridge]
 [Soft piano]
-ถ้าหากวันนึงเธอกลับมา
-ฉันก็ยังอยู่ตรงนี้เหมือนเดิม
+ถ้าหากวันนึงเธอเดินกลับมา
+ฉันก็ยังอยู่ตรงนี้รอเธอเรื่อยมา
 
 [Chorus]
-อยากบอกเธอว่าฉันยังรอ
-(ยังรอ ยังรอ)
-อยากให้เธอรู้ว่าฉันยังคิดถึง
-(ยังคิดถึง)
+อยากบอกเธอว่าฉันยังคอย
+(ยังคอย ยังคอย)
+อยากให้เธอรู้ใจฉันสักหน่อย
+(สักหน่อย สักหน่อย)
 แม้วันเวลาจะพาเราห่างไกล
-ฉันยังเก็บเธอไว้ในใจเสมอ
+ฉันยังเก็บเธอเอาไว้ข้างใน ในใจ
 
 [Outro]
 [Acoustic guitar fade]
@@ -83,9 +90,17 @@ Thai pop, modern T-pop ballad, bittersweet nostalgic, fingerpicked acoustic guit
 - Weirdness: 28%
 - Style Influence: 78%
 
-#### เพี้ยน Risk Flags
-- "ก็" ในบรรทัด "หัวใจก็เปียกชื้นอีกครั้ง" — เสียง mai-tho falling tone บนโน้ตที่อาจจะถือยาว เสี่ยงจะกลายเป็น mid tone
-- "เก่า" ในบรรทัด "ภาพถ่ายใบเก่า" — falling tone บน accent — เสี่ยงเล็กน้อย ถ้าเพี้ยนให้เปลี่ยนเป็น "ภาพในวันเก่าที่ยังเก็บไว้"
+#### ⚠️ เพี้ยน Risk Flags
+- "ก็" ในบรรทัด pre-chorus — falling tone บนโน้ตที่อาจถือยาว — เสี่ยง flat; ถ้าเพี้ยนใน take 1 ใช้ Replace Section
+- "เก่า" ใน verse 2 — falling tone บน accent — เสี่ยงเล็กน้อย; ถ้าเพี้ยนให้เปลี่ยนเป็น "ภาพในวันก่อนที่ยังเก็บใกล้"
+
+#### 🎼 คำคล้องจอง Audit
+- **Verse 1 + Verse 2:** ABAB ครบ — line 1+3 บน /aːi/ (สาย-เท่าไร / ใกล้-เข้าใจ), line 2+4 บน /ɤː/ (เสมอ-เผลอ / เสมอ-เพ้อ). Verse 2 mirror Verse 1 → cohesive ✓
+- **Pre-Chorus:** AA couplet บน /aː/ (มา-ครา) ✓
+- **Chorus:** AABB บน /ɔːi/ (คอย-หน่อย) + /ai/ (ไกล-ใจ). Echo "(ยังคอย)" + "(สักหน่อย)" rhyme กับบรรทัดด้านบน ✓
+- **สัมผัสใน:** chorus line "ฉันยังเก็บเธอเอาไว้ข้างใน ในใจ" — vowel /ai/ ซ้ำ 3 ครั้ง (ไว้-ใน-ใจ) — hook reinforcement ✓
+- **Title hook "ใจ"** ลงตำแหน่งสุดท้ายของ chorus ทุกรอบ ✓
+- ไม่พบ ขัดสัมผัส, สัมผัสซ้ำคำเดียวกัน, หรือ forced rhyme
 
 ---
 
@@ -94,6 +109,11 @@ Thai pop, modern T-pop ballad, bittersweet nostalgic, fingerpicked acoustic guit
 **User concept:** เพลงให้กำลังใจคนที่ท้อ ให้สู้ต่อ แนวร็อคสาย Bodyslam ผู้ชายร้อง
 
 ### 🎵 ก้าวต่อไป
+
+**Rhyme blueprint:**
+- Hook word = "ไป" → chorus rhyme family = **/ai/ open** (ไป, ใจ, ไหว, ใหม่, ไกล, ใคร)
+- Verse rhyme family = **/aːŋ/** แม่กง (ทาง, วาง, ระหว่าง, ห่าง) — AABB couplets
+- Pre-chorus uses **/ai/** as well, building anticipation toward the chorus payoff
 
 #### Styles
 ```
@@ -106,60 +126,60 @@ Thai rock, anthemic stadium rock, emotional and powerful, distorted electric gui
 [Distorted electric guitar riff]
 
 [Verse 1]
-เคยล้ม เคยแพ้ เคยเจ็บมานาน
-เหมือนทางที่เดินไม่มีปลายทาง
-แต่ใจดวงนี้ยังไม่ยอมวาง
-ยังคงเดินต่อไปบนเส้นทางของตัวเอง
+เคยล้ม เคยแพ้ บนเส้นทาง
+เหมือนใจที่เดินอยู่ระหว่าง
+แต่หัวใจดวงนี้ยังไม่วาง
+ยังคงก้าวเดินไม่เคยร้างห่าง
 
 [Pre-Chorus]
 ไม่ว่าฟ้าจะมืดเพียงไหน
-(เพียงไหน)
-ฉันจะไม่หยุด ไม่ยอมแพ้
+(เพียงไหน เพียงไหน)
+ฉันจะไม่ยอม ไม่ยอมพ่ายไป
 
 [Chorus]
 ก้าวต่อไป ก้าวต่อไป
 (ก้าวต่อไป)
 แม้จะเหนื่อยแค่ไหน ก็ต้องไป
-(ต้องไป)
-เพราะปลายทางที่ฉันฝัน
-ยังรออยู่ตรงนั้นเสมอ
-ก้าวต่อไป ไม่หยุดเดิน
+(ต้องไป ต้องไป)
+เพราะจุดหมายที่ฝันใฝ่
+ยังรออยู่ตรงนั้น ใจ
+ก้าวต่อไป ไม่หยุดใจ
 
 [Verse 2]
-ทุกหยาดเหงื่อที่ฉันได้หลั่งลงมา
-ทุกบาดแผลคือบทเรียนที่ผ่าน
-ไม่มีใครรู้ว่าฉันต้องเจออะไร
-แต่ฉันรู้ว่าฉันจะไปต่อ
+ทุกหยาดเหงื่อที่หลั่งลงบนทาง
+ทุกบาดแผลคือบทเรียนระหว่าง
+ไม่มีใครรู้ว่าฉันต้องวาง
+อะไรไปแลกกับเส้นทางห่าง
 
 [Pre-Chorus]
 ไม่ว่าใครจะมองอย่างไร
-(อย่างไร)
-ฉันจะเดินทางของฉันเอง
+(อย่างไร อย่างไร)
+ฉันจะเดินทางของฉันต่อไป
 
 [Chorus]
 ก้าวต่อไป ก้าวต่อไป
 (ก้าวต่อไป)
 แม้จะเหนื่อยแค่ไหน ก็ต้องไป
-(ต้องไป)
-เพราะปลายทางที่ฉันฝัน
-ยังรออยู่ตรงนั้นเสมอ
-ก้าวต่อไป ไม่หยุดเดิน
+(ต้องไป ต้องไป)
+เพราะจุดหมายที่ฝันใฝ่
+ยังรออยู่ตรงนั้น ใจ
+ก้าวต่อไป ไม่หยุดใจ
 
 [Guitar Solo]
 
 [Bridge]
 [Belted]
-ถ้าฉันยอมแพ้วันนี้
-ใครจะเดินต่อให้ฉัน
+ถ้าฉันยอมแพ้ในวันนี้
+ใครจะเดินต่อให้ฉันได้ไป
 
 [Chorus]
 ก้าวต่อไป ก้าวต่อไป
 (ก้าวต่อไป)
 แม้จะเหนื่อยแค่ไหน ก็ต้องไป
-(ต้องไป)
-เพราะปลายทางที่ฉันฝัน
-ยังรออยู่ตรงนั้นเสมอ
-ก้าวต่อไป ไม่หยุดเดิน
+(ต้องไป ต้องไป)
+เพราะจุดหมายที่ฝันใฝ่
+ยังรออยู่ตรงนั้น ใจ
+ก้าวต่อไป ไม่หยุดใจ
 
 [Outro]
 [Distorted guitar fade]
@@ -172,9 +192,19 @@ Thai rock, anthemic stadium rock, emotional and powerful, distorted electric gui
 - Weirdness: 42%
 - Style Influence: 75%
 
-#### เพี้ยน Risk Flags
-- "ก้าวต่อไป" — hook line; ทุกคำต้องชัด เสียง "ก้าว" (falling tone) บนโน้ตยาวอาจกลายเป็น flat — ถ้าเพี้ยนใน take 1 ใช้ Replace Section แล้วลองเพิ่ม `[Belted]` ก่อน chorus
-- "ปลายทาง" — initial cluster "ปล-" บน accent — เสี่ยงจะกลายเป็น "ปายทาง" — ถ้าเพี้ยนเปลี่ยนเป็น "จุดหมาย" หรือ "ที่หมาย"
+#### ⚠️ เพี้ยน Risk Flags
+- "ก้าวต่อไป" — hook line; เสียง "ก้าว" (falling tone) บนโน้ตยาวอาจ flat — ถ้าเพี้ยนใน take 1 ใช้ Replace Section แล้วลองเพิ่ม `[Belted]` ก่อน chorus
+- "จุดหมาย" — แทนที่ "ปลายทาง" เพื่อหลีกเลี่ยง initial cluster "ปล-" บน accent (เสี่ยงเป็น "ปายทาง")
+
+#### 🎼 คำคล้องจอง Audit
+- **Verse 1:** AAAA บน /aːŋ/ (ทาง-ระหว่าง-วาง-ห่าง) — strong unified family, anthem-appropriate ✓
+- **Verse 2:** mirror ของ Verse 1 — AAAA บน /aːŋ/ ซ้ำ family เดิม → cohesion สูง ✓
+- **Pre-Chorus:** AA บน /ai/ (ไหน-ไป) → vowel family เดียวกับ chorus → "resolves into" the hook ✓
+- **Chorus:** AABB บน /ai/ — line 1+2 (ไป-ไป), line 3+4 (ใฝ่-ใจ), line 5 echo ใจ → hammer the hook ✓
+- **Echo (ก้าวต่อไป) + (ต้องไป):** rhyme กับบรรทัดด้านบน ✓
+- **สัมผัสใน:** "ก้าวต่อไป ก้าวต่อไป" alliteration บน "ก-" + vowel /ai/ ซ้ำ → maximum chant-along catchiness ✓
+- **Title hook "ก้าวต่อไป"** เปิด chorus ทุกรอบและจบ chorus ทุกรอบ → เป็นทั้ง anchor และ payoff ✓
+- ไม่พบ ขัดสัมผัส; สัมผัสซ้ำคำ "ไป" ใน chorus เป็น **intentional hook repetition** (acceptable in anthemic chorus, not a flag)
 
 ---
 
@@ -436,7 +466,8 @@ phleng phuea chiwit, Thai folk rock, narrative storytelling melancholic, acousti
 When the user gives a concept that matches one of these genres, use the structure as a template:
 1. Keep the section skeleton (Intro/Verse/Pre-Chorus/Chorus/Verse/Pre-Chorus/Chorus/Bridge/Chorus/Outro)
 2. Keep the chorus written out 3 times
-3. Keep the `(parenthetical echoes)` pattern in the Pre-Chorus and Chorus
-4. Adapt the lyrics to the user's actual concept
-5. Keep the Style template; tweak BPM/mood to match
-6. Always run the เพี้ยน risk check on the new lyrics
+3. Keep the `(parenthetical echoes)` pattern in the Pre-Chorus and Chorus — make sure echoes rhyme with the line above them (per `khlong-jong-rhyme.md`)
+4. **Pick the chorus rhyme family BEFORE writing any lines.** Examples 1 and 2 show the rhyme blueprint at the top of each section — do this for every new song
+5. Adapt the lyrics to the user's actual concept while preserving the rhyme scheme
+6. Keep the Style template; tweak BPM/mood to match
+7. Always run BOTH audits: the เพี้ยน risk check AND the คำคล้องจอง rhyme audit (see Step 7 of `SKILL.md`)

@@ -43,12 +43,12 @@ Skip a question only if the user already answered it explicitly in the conversat
 
 Before writing, view these files based on the genre and language choices:
 
-- **Always read** `references/suno-fields-reference.md` (tags, sliders, formatting rules) and `references/tonal-melodic-rules.md` (เพี้ยน prevention).
+- **Always read** `references/suno-fields-reference.md` (tags, sliders, formatting rules), `references/tonal-melodic-rules.md` (เพี้ยน prevention), and `references/khlong-jong-rhyme.md` (Thai rhyme craft — load-bearing for lyric quality).
 - **For Thai pop/rock genre selection** — read the matching section in `references/style-templates.md`.
 - **For full worked examples** — read `references/examples.md`.
-- **For risk-flagging final lyrics** — apply `references/pian-risk-checklist.md`.
+- **For risk-flagging final lyrics** — apply `references/pian-risk-checklist.md` (เพี้ยน) AND the rhyme audit in Section 7 of `references/khlong-jong-rhyme.md`.
 
-Reading them is fast and avoids guessing on tag names, slider numbers, and Thai pronunciation pitfalls.
+Reading them is fast and avoids guessing on tag names, slider numbers, Thai pronunciation pitfalls, and rhyme scheme construction.
 
 ### Step 3 — Compose the lyrics
 
@@ -76,7 +76,15 @@ Lyric-craft rules to follow (from `references/tonal-melodic-rules.md`):
 - **Section directives in `[brackets]`** — they are NOT sung. Use for `[Soft piano]`, `[Acoustic guitar fade]`, etc. inserted between sections.
 - **Thai+English code-switching:** anchor each section to one language with a parenthetical marker after the section header, like `[Verse 1] (Thai)` or `[Bridge] (English)`. Don't mix scripts within the same line — put English to its own line or its own `(echo)`.
 - **Apply tonal-melodic alignment principles:** the chorus hook line is the most important — pick title words whose lexical tones flow naturally with a singable melodic shape. See `references/tonal-melodic-rules.md` for the 5-tone contour rules and the "fix techniques" list.
-- **Rhyme:** use สัมผัสนอก (last syllable of line N rhymes with a syllable in line N+1) where natural; สัมผัสใน (alliteration / vowel echo within a line) is a bonus, not required. Don't sacrifice naturalness for rhyme.
+- **คำคล้องจอง (Thai rhyme) — load-bearing, not optional.** This is the single biggest difference between lyrics that sound "เป็นเพลง" (song-like) and lyrics that sound like prose forced onto a melody. Apply the rules in `references/khlong-jong-rhyme.md`:
+  - **Compose the chorus first**, picking the hook end-rhyme word (usually the title) and choosing a vowel family that has many partners (ใจ-family /ai/, มา-family /aː/, รัก-family /ak/ are reliable workhorses).
+  - **Chorus end-rhyme scheme:** AABB or AABA. The hook line's last syllable must rhyme with at least one other chorus line's last syllable.
+  - **Verse end-rhyme scheme:** AABB or ABAB. Verse 1 and Verse 2 should share at least one rhyme family for cohesion.
+  - **Pre-chorus** can deliberately switch to a contrasting rhyme that "wants to resolve" into the chorus family (e.g., pre-chorus on /ɤː/ resolving into chorus on /ai/).
+  - **สัมผัสใน (internal rhyme):** at least one per chorus line — vowel echo (two syllables sharing a vowel) or alliteration (two syllables sharing an initial consonant). Verses can be lighter on this but shouldn't have zero.
+  - **Phonetic rule:** Thai rhyme requires same vowel + same final-consonant class (มาตราตัวสะกด). **Tone does not matter for rhyme** — สามัญ/เอก/โท/ตรี/จัตวา on the same vowel + final all rhyme freely. Cross-มาตรา attempts (ฟัง /ŋ/ + ฟัน /n/) are "เกือบคล้อง" — flag them as broken rhymes.
+  - **(Parens echoes)** in the chorus must rhyme with the line above them. They are the rhyme reinforcement, not free decoration.
+  - Don't force absurd rhymes that destroy meaning — listeners forgive a missed rhyme; they don't forgive a tractor in a love song. Prefer near-rhyme or unrhymed line over an absurd word choice.
 
 ### Step 4 — Compose the Styles description
 
@@ -116,9 +124,11 @@ The title is cosmetic in Suno (does not influence audio), but the user will see 
 - Echoes the chorus hook phrase, OR uses a memorable image from the lyrics
 - ≤30 Thai characters is comfortable
 
-### Step 7 — Run the เพี้ยน risk check
+### Step 7 — Run the เพี้ยน risk check AND the คำคล้องจอง rhyme audit
 
-Before finalizing, scan the lyrics for these high-risk patterns (full list in `references/pian-risk-checklist.md`):
+Two separate audits, both done before finalizing. Both follow the "warn, don't auto-fix" rule: state the line, the issue, suggest a rewrite — let the user choose.
+
+**7a. เพี้ยน risk check** (full list in `references/pian-risk-checklist.md`):
 
 - Lines >12 syllables → split into two lines
 - Pali/Sanskrit compounds (สรรเสริญ, อัจฉริยภาพ) on fast sections → relocate or substitute
@@ -128,7 +138,20 @@ Before finalizing, scan the lyrics for these high-risk patterns (full list in `r
 - Same-line code-switching → split into two lines or move English to a `(echo)`
 - Short vowels (อิ, อะ, อุ) on long held notes → switch to long vowels if possible
 
-For each risk found, state the line, the issue, and a suggested rewrite. Don't auto-rewrite — let the user choose.
+**7b. คำคล้องจอง rhyme audit** (full checklist in Section 7 of `references/khlong-jong-rhyme.md`):
+
+- Does the chorus hook line rhyme with its partner? Title word on a rhyme position?
+- Are the (parens echoes) rhyming with the line above? If not, fix the echo word.
+- At least one สัมผัสใน per chorus line (vowel echo or alliteration)?
+- Verse end-rhyme scheme present (AABB / ABAB / AABA)? If 3+ unrhymed line-ends in a 4-line verse, flag.
+- Verse 2 shares at least one rhyme family with Verse 1 (cohesion)?
+- Any ขัดสัมผัส (almost-rhyme — same vowel but wrong final consonant, like ฟัง/ฟัน)? Flag as broken rhyme.
+- Same chorus end-rhyme family across all chorus repeats? (Should be identical text anyway.)
+- Forced rhymes that hurt meaning? Suggest a meaningful alternative or unrhymed line.
+
+Output both audits as separate sections in the final answer (see Step 8 template). 0–2 flags total = healthy; 3–5 = one section likely needs rework; 6+ = the lyrics need a redraft (offer to redraft on user request, don't do it unprompted).
+
+**Important: when the user pasted their own lyrics**, run BOTH audits on their text. If the rhyme scheme is systematically absent, say so directly ("เนื้อร้องนี้ยังไม่มี scheme คำคล้องจอง อาจฟังเหมือนพูดมากกว่าเหมือนเพลง — อยากให้ refactor ให้มั้ย?") and wait for the user to ask before rewriting.
 
 ### Step 8 — Output the consolidated answer
 
@@ -164,6 +187,11 @@ Use this exact template so the user can copy each block straight into Suno:
 - Line "...": [issue], suggest rewriting as "..."
 - (or: "ไม่พบจุดเสี่ยงสำคัญ" if clean)
 
+### 🎼 คำคล้องจอง Audit
+
+- บรรทัด "...": [rhyme issue, e.g. "ขัดสัมผัส กับ '...' (ฟัง /ŋ/ vs. ฟัน /n/)"], แนะนำเปลี่ยนเป็น "..."
+- (or: "scheme คำคล้องจอง ครบ — chorus AABB บน /ai/, verse ABAB บน /ɤː/, สัมผัสใน ครบทุกบรรทัด chorus" if clean)
+
 ### 🔁 Iteration Tips
 
 If take 1 isn't right:
@@ -175,7 +203,7 @@ If take 1 isn't right:
 
 ## Edge cases and special handling
 
-**If the user already has lyrics they wrote:** skip Step 3 (composition), but still run Step 7 (เพี้ยน risk check) on their lyrics, and produce the rest of the prompt set.
+**If the user already has lyrics they wrote:** skip Step 3 (composition), but still run BOTH Step 7a (เพี้ยน risk check) AND Step 7b (คำคล้องจอง rhyme audit) on their lyrics, and produce the rest of the prompt set. If the rhyme scheme is systematically absent, say so explicitly and offer to refactor — but wait for user approval before rewriting.
 
 **If the user wants only instrumental:** check the "Instrumental" toggle in Suno; in this case, Lyrics field stays empty (or only `[Instrumental]` tags). Still produce Styles, Title, sliders.
 
