@@ -2,6 +2,8 @@
 
 A systematic checklist to apply to Thai lyrics before finalizing the Suno prompt. Per the user's preference: warn the user when risk is found, suggest a rewrite, but DO NOT auto-rewrite — let the user choose.
 
+**Scope:** this file covers **pronunciation/rendering risk only** (whether Suno will mispronounce a word). For rhyme and song-craft issues — broken รหัสคล้องจอง, weak สัมผัสใน, missing AABB scheme — see the separate audit in Section 7 of `khlong-jong-rhyme.md`. Step 7 of `SKILL.md` runs both side-by-side.
+
 ## How to use this checklist
 
 For each line of lyrics, scan for these patterns in order. Flag any matches in the final output's "เพี้ยน Risk Flags" section. Format each flag as:
@@ -171,3 +173,5 @@ Or, if clean:
 
 ไม่พบจุดเสี่ยงสำคัญ — เนื้อร้องใช้คำง่ายๆ และโครงสร้างประโยคเหมาะกับความยาวบรรทัด ควรออกเสียงได้ชัดในการ generate
 ```
+
+The final consolidated answer also has a separate **🎼 คำคล้องจอง Audit** block (per Step 8 in `SKILL.md`). That block is populated from the checklist in Section 7 of `khlong-jong-rhyme.md` — keep the two audits visually separate so the user can act on them independently.
