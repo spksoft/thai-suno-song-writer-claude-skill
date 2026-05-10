@@ -1,0 +1,40 @@
+name: Release skill
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build .skill
+        run: make build
+
+      - name: Move latest tag to HEAD
+        run: |
+          git tag -f latest
+          git push origin latest --force
+
+      - name: Update rolling release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: "Latest build (${{ github.sha }})"
+          files: dist/thai-suno-songwriter.skill
+          fail_on_unmatched_files: true
+          make_latest: 'true'
+          body: |
+            Latest build from `main` (commit `${{ github.sha }}`).
+
+            ดาวน์โหลด `thai-suno-songwriter.skill` ด้านล่าง แล้วแตกเข้า `~/.claude/skills/`
+            Download `thai-suno-songwriter.skill` below and extract into `~/.claude/skills/`.
