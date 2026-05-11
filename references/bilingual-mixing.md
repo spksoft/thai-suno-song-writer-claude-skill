@@ -1,6 +1,6 @@
 # Bilingual Mixing — Thai + English in the Same Suno Song
 
-Single source of truth for cross-language mechanics. Loaded only when the lyric contains both Thai and English content. See `tonal-melodic-rules.md` and `pian-risk-checklist.md` for Thai-specific phonetics; see `prosody-meter-en.md` and `english-diction-checklist.md` for English-specific phonetics; this file only covers the **interface** between them.
+Single source of truth for cross-language mechanics. Loaded only when the lyric contains both Thai and English content. See `thai-tone-craft.md` for Thai-specific phonetics; see `english-prosody-rhyme.md` for English-specific phonetics; this file only covers the **interface** between them.
 
 ## 1. The language-anchoring rule (load-bearing)
 
@@ -24,7 +24,7 @@ Why: Suno's tokenizer and vocal model can drift language mid-song when the scrip
 
 ## 2. The no-mix-per-line rule
 
-**Within a single sung lead line, use ONE language.** This rule already exists for Thai (in `pian-risk-checklist.md` #8); it generalizes to all bilingual cases.
+**Within a single sung lead line, use ONE language.** This rule already exists for Thai (in `thai-tone-craft.md` §4 pattern #8); it generalizes to all bilingual cases.
 
 Forbidden:
 ```
@@ -42,7 +42,7 @@ Forever in my heart            ← English lead line
 
 Why: Suno applies one phonology per line. Mid-line script changes cause the model to apply English phonology to Thai or vice versa — output drifts unpredictably.
 
-**The only sanctioned exception** is the parenthetical echo (§3).
+**The only sanctioned exception** is the parenthetical echo (§3). For the explicit last-resort fallback (Thai-script respelling of an English word), see `thai-phonetic-respelling.md` §5 — that pattern stays in Thai script, not Latin.
 
 ## 3. The echo-translation pattern
 
@@ -58,7 +58,7 @@ The line's lead vocal sings the lead language; the echo is overlaid as a backing
 
 **Echo design rules:**
 - Keep the echo short: 1–5 syllables. Long echos lose their backing quality.
-- The echo should rhyme with or otherwise sonically reinforce the lead line (same as Thai (parens) echo rule in `khlong-jong-rhyme.md`).
+- The echo should rhyme with or otherwise sonically reinforce the lead line (same as Thai (parens) echo rule in `thai-rhyme-craft.md`).
 - Echoes follow their lead — language-anchor follows the section header for the lead language; the echo is in the other.
 - Do NOT stack more than one echo per line.
 
@@ -74,7 +74,7 @@ Thai pop, modern T-pop ballad, … , All lyrics in Thai, no English drift
 modern country, … , All lyrics in English, no other languages
 ```
 
-The drift declaration is community-validated as one of the more reliable global hints when the model wants to drift to its trained-dominant language (English). For Thai-primary bilingual songs, this is especially load-bearing.
+The drift declaration is community-validated as one of the more reliable global hints when the model wants to drift to its trained-dominant language (English). For Thai-primary bilingual songs, this is especially load-bearing because Thai is in Suno's "lesser-represented" tier (see `thai-tone-craft.md` §6 and `suno-platform.md` Layer 4).
 
 **Apply when:** the lyric is >70% one language (the dominant language). For 50/50 bilingual songs, do not pin — let the section anchors do the work.
 
@@ -99,13 +99,15 @@ If a generated take drifts mid-song (Thai section ends up in English-accented Th
 
 Steps 1 and 2 are useful for debugging which section is causing the issue. Step 3 is the structural fix once the issue is found.
 
-## 6. Precedent patterns from other bilingual genres
+For drift that survives this procedure on Thai sections specifically: see `suno-platform.md` §11 "Persona / Voices / Extend / Song Editor — Thai workflow" — Persona-lock or Replace Section can rescue specific stubborn lines.
 
-The Thai+English case is one instance of a broader pattern. Other genres with established bilingual conventions:
+## 6. Precedent patterns from other bilingual genres — for reference only
+
+**Important framing:** the patterns below describe how other bilingual genres handle cross-language mechanics. They are **external precedents only** — the skill's cardinal rule for Thai content (`SKILL.md` Step 3, "never romanize Thai") is NOT relaxed by these precedents. The skill's job is Thai+English bilingual; the patterns below are illustrative only.
 
 ### K-pop (Korean + English)
-- Korean usually romanized in early Suno versions; v5+ handles Hangul better but romanization remains safer.
-- Hyphenate Korean for syllabic control: `Sa-rang-hae` not `Saranghae`.
+- Korean usually written in romanization OR Hangul; v5+ handles Hangul well. **This is a Korean-specific convention.** Thai is NEVER romanized — different language, different rules.
+- For K-pop content (if the user requests it as a precedent), Korean lyrics may be hyphenated in romanization (`Sa-rang-hae`) for syllabic control — again, Korean-specific.
 - English chorus is canonical — section-anchor explicitly: `[Chorus] (English)`.
 - Group-vocal tags critical: `Mixed group vocals`, `Layered harmonies`, `Gang vocals`, `Group Chant`.
 
@@ -115,10 +117,12 @@ The Thai+English case is one instance of a broader pattern. Other genres with es
 - Reggaeton 88–100 BPM; dembow rhythm tag for genre signal.
 
 ### J-pop (Japanese + English title chunks)
-- Japanese romanized (romaji) over kana — v4.5 era requirement; v5 is more forgiving but romanization remains the safer default.
+- Japanese may be written in romaji or kana; v5 handles kana reasonably. Again, **Japanese-specific convention**.
 - English title chunks in chorus are a common pattern.
 
-The Thai+English patterns in §1–§5 apply identically to these cases; substitute the language pair. The skill does NOT audit non-Thai-non-English content — for J-pop / K-pop / Spanish, use the section-anchoring + echo-translation patterns above and accept that no dedicated phonetic audit will run.
+**The Thai+English patterns in §1–§5 apply identically to these cases** — substitute the language pair. The skill does NOT audit non-Thai-non-English content — for J-pop / K-pop / Spanish, use the section-anchoring + echo-translation patterns above and accept that no dedicated phonetic audit will run.
+
+**For Thai content specifically: NEVER romanize.** If pronunciation is problematic, the in-Thai-script respelling techniques in `thai-phonetic-respelling.md` are the only sanctioned fix. The K-pop romanization note above is a description of Korean practice, not a recommendation for Thai.
 
 ## 7. The bilingual mixing audit (used in Step 7-E)
 
@@ -189,4 +193,4 @@ For the LLM during composition:
 | Thai with English chorus echoes in parens | Anchor each section with `(Thai)`. Add drift declaration to Style. |
 | Bilingual section-anchored (Thai verses + English chorus, or vice versa) | Anchor EVERY section. Drift declaration optional. |
 | 50/50 bilingual alternating | Anchor every section. No drift declaration (it would be self-contradictory). |
-| Bilingual line-mixed | Refuse — split into two lines or move one to a parenthetical echo. |
+| Bilingual line-mixed | Refuse — split into two lines or move one to a parenthetical echo. Last-resort fallback: Thai-script respelling per `thai-phonetic-respelling.md` §5. |

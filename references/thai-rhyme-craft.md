@@ -1,8 +1,10 @@
-# คำคล้องจอง — Thai Rhyme & Rhythm for Song Lyrics
+# Thai Rhyme Craft (คำคล้องจอง) — Schemes, Families, Audit
 
 This document is the rhyme-craft reference for the skill. **Rhyme in Thai songs is not optional decoration — it is the structural skeleton that makes lyrics feel "ภาษาเพลง" (song-language) rather than "ภาษาพูด" (spoken text).** Suno will sing whatever you give it, but lyrics without proper คำคล้องจอง land flat: the listener perceives them as prose forced onto a melody, even when the meaning is good.
 
 This file explains: (1) how Thai rhyme actually works phonetically, (2) the rhyme schemes that fit modern Thai pop sections, (3) how to compose with rhyme in mind, (4) a self-check the skill applies before output.
+
+For **how a chosen rhyme scheme interacts with Thai tones at the rhyme position** (Rhyme × Tone matrix), see `thai-tone-craft.md` §7. The matrix is the single source — never duplicated here.
 
 Per the skill's "warn, don't auto-fix" rule: when the user supplies their own lyrics, flag rhyme weaknesses and suggest fixes — do not silently rewrite.
 
@@ -36,7 +38,7 @@ Examples that look like they rhyme but don't:
 | แม่กบ | -p stop | จบ, รับ, ลูบ, สงบ |
 | แม่กง | -ŋ nasal | คง, รัง, ฟัง, สอง |
 | แม่กน | -n nasal | กิน, ฝัน, จัน, นอน |
-| แม่กม | -m nasal | ลม, ฝัน... no wait, ฝัน is แม่กน. Try: ตาม, นาม, ก้ม |
+| แม่กม | -m nasal | ตาม, นาม, ก้ม |
 | แม่เกย | -j glide | ลอย, ใจ, เคย, เลย |
 | แม่เกอว | -w glide | ดาว, แล้ว, รัว, เลว |
 
@@ -89,7 +91,7 @@ Vowel echo or alliteration **within a single sung line**. This is what makes Tha
   - "ใจ ที่ ไม่ มี ใคร" — /ai/ at positions 1, 5 + /iː/ at 3, 4
   - "หวาน ผ่าน กาล เวลา" — /aː/ at positions 1, 2, 3, 4 (heavy)
 - **สัมผัสอักษร / สัมผัสพยัญชนะ (alliteration):** two syllables share the initial consonant sound.
-  - "เธอ ทำ ให้ ฉัน" — /th/ + /th/ wait that's only เธอ-ทำ; reach further: "เธอ ทำ ทุก ที่" — /th/ at 1, 2, 3, 4
+  - "เธอ ทำ ทุก ที่" — /th/ at 1, 2, 3, 4
   - "ใจ จม จาก เจ้า" — /j/ at 1, 2, 4
 
 A well-crafted Thai pop line typically has **at least one สัมผัสใน per line** — vowel echo OR alliteration, doesn't have to be both. Lines without any internal rhyme feel "เนื้อดิบ" (raw/unfinished) when sung.
@@ -145,6 +147,7 @@ This pattern is what makes Thai verses feel "เป็นเพลง" (song-lik
 - The title of the song almost always appears at the end of the hook line, and the rhyme partner one or three lines away makes it memorable.
 - **Internal rhyme density should be highest in the chorus** — at least one สัมผัสใน per line, ideally two.
 - The (parenthetical echo) lines should rhyme with the line above them. "อยากบอกเธอว่ารัก (ว่ารัก ว่ารัก)" — the echo is the rhyme.
+- **Tone-safety check:** verify the chorus end-word's tone against the Rhyme × Tone matrix in `thai-tone-craft.md` §7. Some family + tone combinations are RISK or CAUTION — those need either tonal substitution or the commit-to-the-fall strategy.
 
 ### Bridge
 - Often deliberately breaks the rhyme scheme to signal contrast.
@@ -162,12 +165,14 @@ These are the vowel + final combinations that show up most often in Thai pop bec
 | **รัก-นัก family** | /a/ + /k/ (แม่กก) | รัก, นัก, พัก, จัก, มัก, สลัก, ภัค |
 | **ฝัน-วัน family** | /a/ + /n/ (แม่กน) | ฝัน, วัน, จัน, หวัน, มั่น, นั่น, ผัน, ดั่น |
 | **คืน-ฟื้น family** | /ɯː/ + /n/ (แม่กน) | คืน, ฟื้น, ตื่น, ขึ้น, ยืน, ฝืน, รื่น |
-| **มา-ฟ้า family** | /aː/ open | มา, ฟ้า, หา, ตา, น้ำตา, เวลา, ดารา, ห่าง — careful: ห่าง is /aː/+/ŋ/ |
+| **มา-ฟ้า family** | /aː/ open | มา, ฟ้า, หา, ตา, น้ำตา, เวลา, ดารา — careful: ห่าง is /aː/+/ŋ/ |
 | **ดาว-เรา family** | /aw/ open (แม่เกอว) | ดาว, เรา, เก่า, เศร้า, เปล่า, เนา, สาว, หาว |
 | **เดิน-เกิน family** | /ɤːn/ + /n/ (แม่กน with เ-ิน) | เดิน, เกิน, เหิน, เผิน |
 | **หวัง-ดัง family** | /a/ + /ŋ/ (แม่กง) | หวัง, ดัง, ทั้ง, ฟัง, ครั้ง, สั่ง, ระวัง |
 
 When picking a rhyme word, ask: "is this a family that can sustain 4–6 lines of variation, or am I going to run out of options?" Smaller families (เพ้อ-family) force forced word choices; large families (ใจ-family, มา-family) are reliable workhorses.
+
+**Cross-reference**: these 9 families are exactly the rows in the **Rhyme × Tone risk matrix** at `thai-tone-craft.md` §7. After picking a family, look up the chorus end-word's tone in that matrix to verify Suno will render the rhyme cleanly.
 
 ## 6. Anti-patterns to avoid
 
@@ -182,9 +187,9 @@ The line ends on a word that almost rhymes but is wrong (/aː/+/ŋ/ trying to pa
 **Fix:** vary the word, even if you keep the same vowel. ฉันรักเธอ / ฉันมีเพียงเธอ → swap second เธอ to "เผลอ" or "เจอ" if meaning allows.
 
 ### เพี้ยนสัมผัส (rhyme that breaks tonal-melodic alignment)
-Picking a rhyme word whose tone mismatches the melodic contour Suno is likely to generate. Example: ending two lines on falling-tone words (โท) when both fall on long held notes — both will flatten and the rhyme disappears.
+Picking a rhyme word whose tone mismatches the melodic contour Suno is likely to generate. This is the failure mode the Rhyme × Tone matrix in `thai-tone-craft.md` §7 catches — consult it during composition.
 
-**Fix:** when designing the rhyme, prefer mid (สามัญ) or high (ตรี) tones for chorus end-rhymes — these survive Suno's rendering best. Save falling/rising for unstressed positions.
+**Fix:** when designing the rhyme, prefer mid (สามัญ) or high (ตรี) tones for chorus end-rhymes — these survive Suno's rendering best. Save falling/rising for unstressed positions, OR commit to the fall (see `thai-tone-craft.md` §8).
 
 ### สัมผัสเลื่อน (drifting rhyme)
 Stanza 1 rhymes A-A-B-B with vowel /aː/. Stanza 2 rhymes A-A-B-B but with vowel /ɤː/. Each stanza is internally consistent but the song feels disconnected.
@@ -196,7 +201,7 @@ Stanza 1 rhymes A-A-B-B with vowel /aː/. Stanza 2 rhymes A-A-B-B but with vowel
 
 **Fix:** if you can't find a meaningful rhyme word, prefer a near-rhyme or an unrhymed line over an absurd one. Pop listeners forgive a missed rhyme; they don't forgive a tractor.
 
-## 7. The rhyme audit checklist (used by the skill in Step 7)
+## 7. The rhyme audit checklist (used by the skill in Step 7-C)
 
 When reviewing a finished set of lyrics, scan with these questions:
 
@@ -206,16 +211,17 @@ When reviewing a finished set of lyrics, scan with these questions:
 3. **Are the (parens echoes) rhyming with the line above them?**
 4. **At least one สัมผัสใน per line?** (vowel echo or alliteration)
 5. **Same chorus repeated identically each time?** (per the Suno requirement)
+6. **Has the Rhyme × Tone matrix in `thai-tone-craft.md` §7 been consulted?** This is Step 7-A2.
 
 ### Per verse
-6. **Is there an end-rhyme scheme (AABB / ABAB / AABA)?** If three or more line-ends are unrhymed in a 4-line verse, flag it.
-7. **Does Verse 2 share at least one rhyme family with Verse 1?** (Cohesion check.)
-8. **Are any two adjacent line-ends ขัดสัมผัส (almost-rhyming, wrong final)?** Flag these.
+7. **Is there an end-rhyme scheme (AABB / ABAB / AABA)?** If three or more line-ends are unrhymed in a 4-line verse, flag it.
+8. **Does Verse 2 share at least one rhyme family with Verse 1?** (Cohesion check.)
+9. **Are any two adjacent line-ends ขัดสัมผัส (almost-rhyming, wrong final)?** Flag these.
 
 ### Across the song
-9. **Does the chorus rhyme family stay constant across all chorus repeats?**
-10. **Is any vowel family overused** (>10 line-ends out of ~30 total)? Risks monotony.
-11. **Forced rhymes** that break meaning? Suggest the meaningful alternative.
+10. **Does the chorus rhyme family stay constant across all chorus repeats?**
+11. **Is any vowel family overused** (>10 line-ends out of ~30 total)? Risks monotony.
+12. **Forced rhymes** that break meaning? Suggest the meaningful alternative.
 
 For each issue found, output in the same format as เพี้ยน flags:
 
@@ -230,12 +236,13 @@ A song with **0–2 rhyme flags** is in good shape; **3–5** suggests the verse
 When composing from scratch, work in this order — do NOT write line-by-line top-to-bottom:
 
 1. **Pick the hook (chorus) end-rhyme word first.** This is usually the title or the title-adjacent word. Call its vowel family F.
-2. **Write the chorus.** All chorus end-rhymes draw from F. Use AABB.
-3. **Pick a contrasting rhyme family G for the verse.** G should be different enough to feel like setup, similar enough to flow into F. (E.g., F = ใจ-family /ai/, G = เธอ-family /ɤː/ — emotionally close but vowel-distinct.)
-4. **Write Verse 1 with G as end-rhyme.**
-5. **Write Verse 2 mirroring Verse 1's rhyme positions** but with new content.
-6. **Pick a "release" rhyme H for the pre-chorus.** H is typically a vowel that "wants" to resolve into F.
-7. **Bridge: free.** Often deliberately unrhymed or in a fourth family that returns to F at the end.
+2. **Check (F, tone of hook word) in the Rhyme × Tone matrix** at `thai-tone-craft.md` §7. If RISK/CAUTION, either pick a different word from the same family or plan for commit-to-the-fall.
+3. **Write the chorus.** All chorus end-rhymes draw from F. Use AABB.
+4. **Pick a contrasting rhyme family G for the verse.** G should be different enough to feel like setup, similar enough to flow into F. (E.g., F = ใจ-family /ai/, G = เธอ-family /ɤː/ — emotionally close but vowel-distinct.)
+5. **Write Verse 1 with G as end-rhyme.**
+6. **Write Verse 2 mirroring Verse 1's rhyme positions** but with new content.
+7. **Pick a "release" rhyme H for the pre-chorus.** H is typically a vowel that "wants" to resolve into F.
+8. **Bridge: free.** Often deliberately unrhymed or in a fourth family that returns to F at the end.
 
 This order ensures the chorus — the most important part of the song — has the strongest rhyme craft, because you committed to its scaffolding first.
 
@@ -251,7 +258,9 @@ Concept: เพลงรัก, ผู้หญิงร้อง, hook word = "
 
 **Step 1 — Pick the rhyme family.** Hook = "ใจ" → family is /ai/ open. Available partners: ไป, ไหน, ไกล, ใคร, ไหว, ได้, ใช่, ใหม่.
 
-**Step 2 — Sketch AABB chorus end-words:**
+**Step 2 — Verify against Rhyme × Tone matrix.** Look up (ใจ-family) × (MID tone) in `thai-tone-craft.md` §7 → SAFE. Good to proceed.
+
+**Step 3 — Sketch AABB chorus end-words:**
 ```
 line 1: ... ใจ      ← A1
 line 2: ... ไป      ← A2 (rhymes with A1)
@@ -261,7 +270,7 @@ line 4: ... ใจ      ← back to title — repeat for hook recall
 
 Actually that's an AABA — and AABA with the title hammered at end is a classic hook shape. Keep it.
 
-**Step 3 — Fill in lines, adding สัมผัสใน in each line:**
+**Step 4 — Fill in lines, adding สัมผัสใน in each line:**
 ```
 อยากบอกให้เธอเข้าใจ              ← /ai/ at "ให้" + "ใจ" (internal vowel echo on /ai/)
 อยากให้เธอรู้ว่าฉันยังไป...       ← /ai/ at "ให้" + "ไป"  
@@ -269,11 +278,18 @@ Actually that's an AABA — and AABA with the title hammered at end is a classic
 ฉันก็ยังเก็บเธอไว้ในใจ            ← /ai/ at "ไว้" + "ใน" + "ใจ" (triple internal)
 ```
 
-**Step 4 — Audit:** 
+**Step 5 — Audit:**
 - End rhyme AABA on /ai/ ✓
 - Each line has 2+ /ai/ syllables ✓
 - Title "ใจ" lands on hook position (line 4 end) ✓
 - No forced/absurd rhymes ✓
-- All end words are mid/high tone (no falling-tone collapse risk) ✓
+- All end words are mid/high tone (no falling-tone collapse risk per matrix) ✓
 
 This chorus will feel "เป็นเพลง" — that's the difference proper rhyme craft makes.
+
+## Cross-references
+
+- **Rhyme × Tone risk matrix** — `thai-tone-craft.md` §7. Always consult after picking a rhyme family for the chorus hook.
+- **Commit-to-the-fall** strategy for falling-tone hooks — `thai-tone-craft.md` §8.
+- **Hit-song precedents** for hook placement and rhyme strategies — `thai-hit-songs.md` (case studies of คุกเข่า / ลงใจ / เพื่อนเล่น / etc.)
+- **Lyricist signatures** that bias rhyme density and scheme choices — `thai-lyricist-signatures.md`.

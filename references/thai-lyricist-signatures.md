@@ -143,7 +143,7 @@ This file is **load on demand only** — Step 2 routes here only when the user e
 When the user asks for a specific lyricist style:
 
 1. **Confirm the request** before applying — "เขียนแบบฟองเบียร์นะ — คือ anaphora ต้นวรรค + คำง่ายๆ + first-5-seconds. ใช่ที่ต้องการมั้ย?"
-2. **Apply the signature on top of, not instead of, the base workflow.** Still do Step 3–8; just bias the choices in Step 3 per the signature.
+2. **Apply the signature on top of, not instead of, the base workflow.** Still do Steps 3 – 8; just bias the choices in Step 3 per the signature.
 3. **Conflicts with genre defaults** — if the user asks for "เพื่อชีวิต แบบฟองเบียร์", the genre and the lyricist may pull in different directions (เพื่อชีวิต wants narrative; ฟองเบียร์ wants anaphora). Acknowledge the tension; ask which to prioritize, or blend with the user's guidance.
 4. **Don't impersonate** — never produce a lyric that explicitly references or parodies any specific song. Apply the *technique*, not the *content*. Suno will silently filter artist names regardless.
 5. **Mention in the output** — when a signature is applied, note it briefly in the framing: "เนื้อร้องนี้ใช้เทคนิคแบบฟองเบียร์ (anaphora ต้นวรรค + first-5-seconds rule)".
@@ -162,5 +162,11 @@ When the user asks for a specific lyricist style:
 ## 9. What this file is NOT
 
 - Not a guarantee of stylistic resemblance (Suno will not produce songs that sound like the named artists — the names are filtered).
-- Not a way to bypass the no-artist-names rule in `style-templates-th.md`. The Style field still avoids names; this file only biases the **lyric**.
-- Not a complete biography of any lyricist — it's a craft cheat-sheet only. For deeper context, see the sources cited in the research report.
+- Not a way to bypass the no-artist-names rule in `suno-platform.md`. The Style field still avoids names; this file only biases the **lyric**.
+- Not a complete biography of any lyricist — it's a craft cheat-sheet only.
+
+## Cross-references
+
+- **Base composition workflow** — `SKILL.md` Steps 3 / 3.5 / 4. Lyricist signatures bias the choices made within these steps.
+- **Rhyme craft** — `thai-rhyme-craft.md`. Some lyricists (ดี้, สุรักษ์) impose strict rhyme requirements; others (บอย) relax them.
+- **Style templates per genre** — `thai-genre-craft.md`. A lyricist signature does not change the Style field's genre tags — those still match the genre the user requested.
