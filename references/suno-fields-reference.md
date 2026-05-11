@@ -1,17 +1,19 @@
-# Suno v4.5 / v4.5+ / v4.5-all — Complete Field Reference
+# Suno v4.5 / v4.5+ / v4.5-all / v5 / v5.5 — Complete Field Reference
 
-## Hard limits (verified Q4 2025–Q1 2026)
+## Hard limits (verified Q4 2025–Q2 2026)
 
-| Field | v4.5 family | Behavior past limit |
-|---|---|---|
-| Lyrics (Custom mode) | 5,000 chars | silently truncated; aim for ≤3,000 |
-| Styles | 1,000 chars | silently truncated; aim for ≤200–300 |
-| Title | 80 chars | truncated |
-| Audio upload (Free) | 6–60 sec | rejected |
-| Audio upload (Pro/Premier) | up to 8 min | — |
-| Max song length | 8 min | — |
+| Field | v4.5 family | v5 | v5.5 | Behavior past limit |
+|---|---|---|---|---|
+| Lyrics (Custom mode) | 5,000 chars | 5,000 | 5,000 | silently truncated; aim for ≤3,000 |
+| Styles | 1,000 chars | **200 chars** | 1,000 | **silently truncated with no warning** — front-load critical tags |
+| Title | 80 chars | 80 | 80 | truncated |
+| Audio upload (Free) | 6–60 sec | 6–60 | 6–60 | rejected |
+| Audio upload (Pro/Premier) | up to 8 min | up to 8 min | up to 8 min | — |
+| Max song length | 8 min | 8 min | 8 min | — |
 
-The three sub-models (v4.5, v4.5+, v4.5-all) share identical character limits and slider behavior. They differ only in tier access and which co-creation features (Add Vocals, Add Instrumentals, Inspire) are exposed.
+⚠ **v5's 200-char Style limit** is the most consequential trap. Tags after position 200 are dropped silently. When building Styles strings for users on v5, put genre + mood + vocal + BPM tags first; production details and diction cues last. v5.5 restores the 1,000-char budget.
+
+The v4.5 sub-models (v4.5, v4.5+, v4.5-all) share identical character limits and slider behavior. They differ only in tier access and which co-creation features (Add Vocals, Add Instrumentals, Inspire) are exposed.
 
 ## The cardinal rule: brackets vs. parentheses
 
@@ -167,6 +169,41 @@ Order: positives first, exclusions last. Max 1–2 negatives.
 | Worship / orchestral / cinematic | 25–40% | 70–85% |
 | Experimental / avant-garde | 70–85% | 35–55% |
 
+### Recommended values per English sub-genre
+
+| Sub-genre | Weirdness | Style Influence |
+|---|---|---|
+| Mainstream pop (ballad or upbeat) | 25–35% | 70–85% |
+| Rock / pop-rock | 35–50% | 65–80% |
+| Indie (folk-pop / bedroom-pop) | 50–65% | 55–70% |
+| Modern country / Nashville radio | 25–35% | 75–88% |
+| Hip-hop / boom-bap / conscious | 40–55% | 60–75% |
+| Trap / melodic trap | 40–55% | 60–75% |
+| R&B / neo-soul / slow jam | 25–40% | 70–85% |
+| Folk / singer-songwriter | 30–45% | 65–80% |
+| EDM / progressive house / synthwave | 30–45% | 70–85% |
+| Lo-fi / chill / chillwave | 35–50% | 65–80% |
+| Blues / blues-rock | 30–45% | 70–85% |
+
+For both tables, **state a single number, not a range, in the final output**. Pick the midpoint unless the user said "experimental" or "very mainstream."
+
+### English BPM ranges per genre (community-validated)
+
+| Genre | Range | Sweet spot |
+|---|---|---|
+| Lo-fi / Chill | 60–85 | 72 |
+| R&B / Soul / Neo-soul | 65–90 | 78 |
+| Hip-Hop (boom-bap) | 80–100 | 88 |
+| Reggaeton | 88–100 | 95 |
+| Indie folk / acoustic | 85–110 | 95 |
+| Country (modern) | 85–110 | 96 |
+| Pop | 100–130 | 118 |
+| Rock | 110–140 | 128 |
+| House | 120–130 | 124 |
+| Techno | 125–150 | 135 |
+| Trap | 130–170 | 140 (half-time feel) |
+| Drum & Bass | 160–180 | 174 |
+
 ### Edge behavior
 
 - **Weirdness >80%**: genuinely chaotic — sometimes brilliant, often unusable.
@@ -236,10 +273,12 @@ The label "v4.5+all" is the unified family containing three sub-models:
 | v4.5-all | Free | Free-tier replacement; slightly less powerful but full-featured |
 
 Newer alternatives in the dropdown:
-- **v5 (chirp-crow)** — Sept 2025 — studio-grade fidelity, more natural vocals, powers Suno Studio
-- **v5.5** — March 2026 — Voice Cloning, Custom Models, "My Taste" preference memory
+- **v5 (chirp-crow)** — Sept 23, 2025 — studio-grade fidelity, more natural vocals, 12-stem separation, Persona Voices, Sample-to-Song, 4-min Extends, powers Suno Studio. **⚠ 200-char Style limit (down from 1,000)**.
+- **v5.5** — March 26, 2026 — Voice Cloning ("Voices"), Custom Models (train on your catalog, up to 3), "My Taste" passive personalization. **Style limit restored to 1,000 chars.** No prompt-syntax change.
 
-The skill's output works identically across all v4.5+ and v5+ — only Persona/voice features and audio fidelity change.
+The skill's output works identically across all v4.5+ and v5+ — only Persona/voice features, audio fidelity, and Style character budget change.
+
+**When user has a Voice attached (v5.5)**: drop `male vocals` / `female singer` / `young female alto` tags from the Style field. The Voice locks vocal identity; the tag wastes character budget.
 
 ## Common mistakes to avoid
 

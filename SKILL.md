@@ -1,24 +1,24 @@
 ---
 name: thai-suno-songwriter
-description: Generate ready-to-paste prompts for Suno AI to create Thai-language songs (Thai-only or Thai+English code-switching). Use this skill whenever the user mentions Suno, AI music generation, แต่งเพลงด้วย AI, สร้างเพลงไทย, generating song lyrics for AI, T-pop/Thai pop/Thai rock songwriting, or wants to produce the full Lyrics + Styles + Title + slider settings (Vocal Gender, Weirdness, Style Influence) for Suno v4.5/v4.5+/v4.5-all. Trigger this skill on any phrase like "ช่วยแต่งเพลง suno", "อยากทำเพลงไทย AI", "เขียน prompt สำหรับ suno", "Thai song lyrics for Suno", or any request that combines Thai songwriting with an AI music generator — even if Suno isn't named explicitly. The skill produces output formatted for direct paste into Suno's Custom Mode fields, follows Thai pop/rock conventions (tonal-melodic alignment, ฉันทลักษณ์, common chord-progression-friendly phrasing), warns about likely tone-mispronunciation (เพี้ยน) risk, and gives iteration tips.
+description: Generate ready-to-paste prompts for Suno AI to create Thai-language songs, English-language songs, or bilingual Thai+English songs. Use this skill whenever the user mentions Suno, AI music generation, แต่งเพลงด้วย AI, สร้างเพลงไทย, write a song for Suno, generate song lyrics for AI, T-pop/Thai pop/Thai rock songwriting, English pop/rock/country/hip-hop/R&B/folk songwriting, or wants to produce the full Lyrics + Styles + Title + slider settings (Vocal Gender, Weirdness, Style Influence) for Suno v4.5/v4.5+/v4.5-all/v5/v5.5. Trigger this skill on any phrase like "ช่วยแต่งเพลง suno", "อยากทำเพลงไทย AI", "เขียน prompt สำหรับ suno", "Thai song lyrics for Suno", "write me an English song for Suno", "Suno prompt for a country ballad", "make a bilingual T-pop song", or any request that combines songwriting with an AI music generator — even if Suno isn't named explicitly. The skill produces output formatted for direct paste into Suno's Custom Mode fields, follows Thai pop/rock conventions (tonal-melodic alignment, ฉันทลักษณ์, common chord-progression-friendly phrasing) AND English pop/rock/country/hip-hop conventions (Pattison-style prosody, English rhyme types, hook bookending, genre-specific structure), warns about likely tone-mispronunciation (เพี้ยน) risks for Thai, English homograph and singability risks for English, runs rhyme audits in both languages with their respective phonetic rules (สัมผัสนอก/ใน for Thai, perfect/family/assonance for English), enforces language anchoring for bilingual songs, and gives iteration tips.
 ---
 
-# Thai Suno Songwriter
+# Thai + English Suno Songwriter (bilingual)
 
-Help the user create a complete, ready-to-paste prompt set for Suno AI in Thai (or Thai mixed with English). The output goes into four Suno fields plus three sliders.
+Help the user create a complete, ready-to-paste prompt set for Suno AI in Thai, English, or a Thai+English mix. The output goes into four Suno fields plus three sliders.
 
 ## What Suno needs (the target output)
 
-The user will paste the skill's output into Suno's Advanced/Custom mode, which has these fields (see screenshot reference if available, or `references/suno-fields-reference.md`):
+The user will paste the skill's output into Suno's Advanced/Custom mode, which has these fields:
 
-| Field | What it is | Limit |
-|---|---|---|
-| **Lyrics** | Thai lyrics with `[Section]` headers and `(backing vocals)` in parens | ≤5,000 chars (target ≤3,000) |
-| **Styles** | Comma-separated genre/mood/instrument tags | ≤1,000 chars (target ≤200) |
-| **Song Title** | Cosmetic name | ≤80 chars |
-| **Vocal Gender** | Male / Female toggle | binary |
-| **Weirdness** | 0–100% slider | recommend per genre |
-| **Style Influence** | 0–100% slider | recommend per genre |
+| Field | What it is | Limit (v5) | Limit (v4.5/v5.5) |
+|---|---|---|---|
+| **Lyrics** | Lyrics with `[Section]` headers and `(backing vocals)` in parens | 5,000 chars | 5,000 chars |
+| **Styles** | Comma-separated genre/mood/instrument tags | **200 chars (silent truncation)** | 1,000 chars |
+| **Song Title** | Cosmetic name | 80 chars | 80 chars |
+| **Vocal Gender** | Male / Female toggle | binary | binary |
+| **Weirdness** | 0–100% slider | recommend per genre | recommend per genre |
+| **Style Influence** | 0–100% slider | recommend per genre | recommend per genre |
 
 The skill always asks the user about their concept first, then produces all six in one consolidated answer.
 
@@ -30,34 +30,57 @@ Even if the user gives a one-line request, ask the questions below before writin
 
 Ask these (combine into one tool call — split into 2 calls only if more than 3 questions are needed):
 
-1. **หัวข้อ/เรื่อง** — what is the song about? (free text, encourage 1 sentence)
-2. **อารมณ์** — pick one: `เศร้า/อกหัก` · `รัก/หวาน` · `ฮึกเหิม/สู้ชีวิต` · `เหงา/คิดถึง` · `สนุก/ปาร์ตี้` · `โกรธ/ระบาย` · `อื่นๆ (ระบุ)`
-3. **แนวเพลง (sub-genre)** — pick one: `T-pop ballad` · `Thai pop-rock / stadium rock` · `Thai indie / bedroom pop` · `City pop / 80s synth` · `Phleng phuea chiwit / folk-rock` · `Pop-punk` · `R&B / city ballad` · `Luk thung / mor lam fusion`
-4. **ภาษา** — pick one: `ไทยล้วน` · `ไทยเป็นหลัก + อังกฤษบางท่อน (chorus echoes / bridge)` · `ครึ่งไทยครึ่งอังกฤษ`
-5. **เพศนักร้อง** — `Male` / `Female` / `ดูเอ็ท`
-6. **ความยาว** — `สั้น (~2 นาที, แค่ verse-chorus-verse-chorus)` / `มาตรฐาน (~3:30, เต็มโครง)` / `ยาว (~5 นาที, มี bridge ยาว+โซโล)`
+1. **หัวข้อ/เรื่อง / Topic** — what is the song about? (free text, encourage 1 sentence)
+2. **อารมณ์ / Mood** — pick one: `เศร้า/อกหัก` · `รัก/หวาน` · `ฮึกเหิม/สู้ชีวิต` · `เหงา/คิดถึง` · `สนุก/ปาร์ตี้` · `โกรธ/ระบาย` · `อื่นๆ (ระบุ)`
+3. **แนวเพลง (sub-genre)** — Thai: `T-pop ballad` · `Thai pop-rock / stadium rock` · `Thai indie / bedroom pop` · `City pop / 80s synth` · `Phleng phuea chiwit / folk-rock` · `Pop-punk` · `R&B / city ballad` · `Luk thung / mor lam fusion`. English: `pop ballad` · `pop upbeat` · `rock / pop-rock` · `country / Nashville` · `hip-hop / trap` · `R&B / neo-soul` · `folk / singer-songwriter` · `indie` · `EDM / dance` · `lo-fi / chill` · `blues`
+4. **ภาษา / Language** — pick one: `ไทยล้วน (Thai only)` · `ไทยเป็นหลัก + อังกฤษบางท่อน (Thai primary + English echoes/bridge)` · `ครึ่งไทยครึ่งอังกฤษ (50/50 bilingual)` · `อังกฤษล้วน (English only)`
+5. **เพศนักร้อง / Vocal** — `Male` / `Female` / `ดูเอ็ท / Duet`
+6. **ความยาว / Length** — `สั้น (~2 นาที)` / `มาตรฐาน (~3:30)` / `ยาว (~5 นาที)`
 
-Skip a question only if the user already answered it explicitly in the conversation. If unsure, ask. Don't guess on language ratio — that decision changes the lyric structure.
+Skip a question only if the user already answered it explicitly. If unsure, ask. **Don't guess on language ratio** — that decision changes the lyric structure and which reference files to load.
+
+The user's language pick is a *hint*. Auto-detection in Step 6.5 is the *authority* — if produced lyric ends up containing a language the user didn't ask for, the relevant audits still run, with a soft warning.
 
 ### Step 2 — Read the relevant reference files
 
-Before writing, view these files based on the genre and language choices:
+Before writing, view files based on language and sub-genre choices. **Read only what's needed** — two-tier loading is intentional.
 
-- **Always read** `references/suno-fields-reference.md` (tags, sliders, formatting rules), `references/tonal-melodic-rules.md` (เพี้ยน prevention), and `references/khlong-jong-rhyme.md` (Thai rhyme craft — load-bearing for lyric quality).
-- **For Thai pop/rock genre selection** — read the matching section in `references/style-templates.md`.
-- **For full worked examples** — read `references/examples.md`.
-- **For risk-flagging final lyrics** — apply `references/pian-risk-checklist.md` (เพี้ยน) AND the rhyme audit in Section 7 of `references/khlong-jong-rhyme.md`.
+**Always read:** `references/suno-fields-reference.md` (tags, sliders, formatting rules).
 
-Reading them is fast and avoids guessing on tag names, slider numbers, Thai pronunciation pitfalls, and rhyme scheme construction.
+**If Thai content (ไทยล้วน / ไทยเป็นหลัก / ครึ่งไทยครึ่งอังกฤษ):**
+- `references/tonal-melodic-rules.md` (เพี้ยน prevention principles)
+- `references/pian-risk-checklist.md` (10-pattern เพี้ยน audit)
+- `references/khlong-jong-rhyme.md` (สัมผัสนอก/ใน, vowel families, rhyme audit)
+- `references/genre-lyric-conventions-th.md` (Thai genre lyrical conventions, vocabulary banks)
+- `references/style-templates-th.md` (Thai sub-genre Style strings)
+
+**If English content (อังกฤษล้วน / ไทยเป็นหลัก / ครึ่งไทยครึ่งอังกฤษ):**
+- `references/song-structure-en.md` (forms, section functions, BPM per genre)
+- `references/lyric-frameworks-en.md` (Pattison, Davis, Sondheim, Stolpe — frameworks)
+- `references/rhyme-craft-en.md` (six rhyme types, schemes, hook placement)
+- `references/prosody-meter-en.md` (English stress-timing, foot, word painting)
+- `references/english-diction-checklist.md` (10-pattern English pronunciation audit)
+- `references/genre-conventions-en.md` (English genre lyrical conventions)
+- `references/style-templates-en.md` (English sub-genre Style strings)
+
+**If bilingual (ไทยเป็นหลัก / ครึ่งไทยครึ่งอังกฤษ):**
+- `references/bilingual-mixing.md` (language anchoring, echo translation, drift declaration)
+
+**Optional — only on user request:**
+- `references/lyricist-signatures-th.md` (when user asks "เขียนแบบดี้ / ฟองเบียร์ / ครูสลา / บอย / สุรักษ์")
+- `references/examples-th.md` (Thai worked examples — only when user asks for example or skill is unsure of format)
+- `references/examples-en.md` (English/bilingual worked examples — same condition)
+
+Reading these is fast and avoids guessing on tag names, slider numbers, pronunciation pitfalls, and rhyme scheme construction.
 
 ### Step 3 — Compose the lyrics
 
-Standard structure for ~3:30 Thai pop song (adjust for length):
+Standard structure for ~3:30 song (adjust for length):
 
 ```
 [Intro]
-[Verse 1]        ← 4 lines, 6–12 syllables each
-[Pre-Chorus]     ← 2–3 lines (optional but adds lift)
+[Verse 1]        ← 4 lines
+[Pre-Chorus]     ← 2–3 lines (optional but adds lift in pop/R&B)
 [Chorus]         ← 4–6 lines, hook on line 1 and line 4
 [Verse 2]        ← 4 lines, expand or shift the scene
 [Pre-Chorus]
@@ -67,160 +90,272 @@ Standard structure for ~3:30 Thai pop song (adjust for length):
 [Outro]
 ```
 
-Lyric-craft rules to follow (from `references/tonal-melodic-rules.md`):
+For bilingual songs, **anchor every section** with `(Thai)` or `(English)` after the bracketed tag (see `bilingual-mixing.md` §1).
 
-- **6–12 syllables per line** for Thai. More than 12 forces the model to compress and tones collapse.
-- **Use Thai script** (ภาษาไทย) — never romanize. Romanization confuses Suno's tokenizer.
-- **Repeat the chorus identically** when it appears 2nd/3rd time. Suno doesn't loop a labeled section by reference; if `[Chorus]` is empty after a verse, Suno improvises (badly). Repeating also reinforces correct pronunciation if it landed on take 1.
-- **Backing vocals/echoes in `(parentheses)`** — they get sung as harmony/echo, lower in the mix. Example: `อยากบอกเธอว่ารัก (ว่ารัก ว่ารัก)`
-- **Section directives in `[brackets]`** — they are NOT sung. Use for `[Soft piano]`, `[Acoustic guitar fade]`, etc. inserted between sections.
-- **Thai+English code-switching:** anchor each section to one language with a parenthetical marker after the section header, like `[Verse 1] (Thai)` or `[Bridge] (English)`. Don't mix scripts within the same line — put English to its own line or its own `(echo)`.
-- **Apply tonal-melodic alignment principles:** the chorus hook line is the most important — pick title words whose lexical tones flow naturally with a singable melodic shape. See `references/tonal-melodic-rules.md` for the 5-tone contour rules and the "fix techniques" list.
-- **คำคล้องจอง (Thai rhyme) — load-bearing, not optional.** This is the single biggest difference between lyrics that sound "เป็นเพลง" (song-like) and lyrics that sound like prose forced onto a melody. Apply the rules in `references/khlong-jong-rhyme.md`:
-  - **Compose the chorus first**, picking the hook end-rhyme word (usually the title) and choosing a vowel family that has many partners (ใจ-family /ai/, มา-family /aː/, รัก-family /ak/ are reliable workhorses).
-  - **Chorus end-rhyme scheme:** AABB or AABA. The hook line's last syllable must rhyme with at least one other chorus line's last syllable.
-  - **Verse end-rhyme scheme:** AABB or ABAB. Verse 1 and Verse 2 should share at least one rhyme family for cohesion.
-  - **Pre-chorus** can deliberately switch to a contrasting rhyme that "wants to resolve" into the chorus family (e.g., pre-chorus on /ɤː/ resolving into chorus on /ai/).
-  - **สัมผัสใน (internal rhyme):** at least one per chorus line — vowel echo (two syllables sharing a vowel) or alliteration (two syllables sharing an initial consonant). Verses can be lighter on this but shouldn't have zero.
-  - **Phonetic rule:** Thai rhyme requires same vowel + same final-consonant class (มาตราตัวสะกด). **Tone does not matter for rhyme** — สามัญ/เอก/โท/ตรี/จัตวา on the same vowel + final all rhyme freely. Cross-มาตรา attempts (ฟัง /ŋ/ + ฟัน /n/) are "เกือบคล้อง" — flag them as broken rhymes.
-  - **(Parens echoes)** in the chorus must rhyme with the line above them. They are the rhyme reinforcement, not free decoration.
-  - Don't force absurd rhymes that destroy meaning — listeners forgive a missed rhyme; they don't forgive a tractor in a love song. Prefer near-rhyme or unrhymed line over an absurd word choice.
+**Universal lyric-craft rules (both languages):**
+
+- **Use the script of the language**: Thai script for Thai content; Latin script for English content. Never romanize Thai (confuses Suno's tokenizer).
+- **Repeat the chorus identically** when it appears 2nd/3rd time. Suno doesn't loop a labeled section by reference; if `[Chorus]` is empty after a verse, Suno improvises (badly).
+- **Backing vocals/echoes in `(parentheses)`** — they get sung as harmony/echo, lower in the mix.
+- **Section directives in `[brackets]`** — NOT sung. Use for `[Soft piano]`, `[Guitar solo]`, etc.
+- **First-5-Seconds rule**: verse 1 must open with a concrete image or specific noun, not abstract emotion. Pattison's "show, don't tell"; ครูสลา's lukthung principle.
+
+**Thai-specific composition rules** (from `references/tonal-melodic-rules.md` + `references/khlong-jong-rhyme.md`):
+
+- **6–12 syllables per line**. More than 12 forces compression and tones collapse.
+- **Apply tonal-melodic alignment**: the chorus hook line is most important — pick title words whose tones flow with a singable melodic shape.
+- **คำคล้องจอง (Thai rhyme) — load-bearing, not optional.** Compose the chorus end-rhyme first (pick vowel family with many partners: ใจ-family /ai/, มา-family /aː/, รัก-family /ak/ are workhorses). Apply AABB / ABAB / AABA schemes per section.
+- **สัมผัสใน (internal rhyme):** at least one per chorus line.
+- **(Parens echoes)** in Thai chorus must rhyme with the line above.
+
+**English-specific composition rules** (from `references/rhyme-craft-en.md` + `references/prosody-meter-en.md` + `references/lyric-frameworks-en.md`):
+
+- **Line length**: verse 8–10 syllables; chorus 10–12. Hard ceiling 15.
+- **Stress-to-downbeat**: stressed syllables on strong beats (1 and 3); function words off strong beats.
+- **Six rhyme types** (Pattison): perfect → family → additive → subtractive → assonance → consonance. Match closure to lyric content.
+- **Chorus rhyme density**: 50–75% (lower than verse). Dense rhyme breaks Suno's melodic phrasing.
+- **Hook placement**: title in chorus line 1, last line, both (bookended), or every line.
+- **Avoid cliché pairs**: fire/desire, heart/apart, eyes/lies, love/above — switch to family or assonance.
+- **Show, don't tell**: concrete nouns, sensory detail, action verbs. Avoid feeling-words (love, sad, lonely, broken) in stressed positions.
+
+**Bilingual composition rules** (from `references/bilingual-mixing.md`):
+
+- **Anchor every section** with `(Thai)` or `(English)`.
+- **No same-line code-switching**: within a single sung lead line, use ONE language. The only sanctioned cross-language device is the parenthetical echo: `Lead line (echo translation)`.
+- For Thai-primary songs with English chorus echoes: keep echoes short (1–5 syllables) and rhyming with the line above.
+- If the lyric is >70% one language, add a drift declaration to the Style field (`All lyrics in [X], no [Y]`).
 
 ### Step 4 — Compose the Styles description
 
 Format: comma-separated tags, in this order:
 
 ```
-[Genre], [Sub-genre/Era], [Mood], [2–3 instruments], [Vocal cue], [Production], [BPM], [Thai diction cue]
+[Genre], [Sub-genre/Era], [Mood], [2–3 instruments], [Vocal cue], [Production], [BPM], [Diction cue]
 ```
 
-Target 4–8 tags total, ≈150–250 chars. Keep under 1,000 chars.
+Target 4–8 tags total, ≈150–250 chars.
 
-**Always include a Thai-pronunciation cue** at the end: `clear native Thai diction` or `Thai vocals in Bangkok accent, no English drift` — this measurably reduces เพี้ยน issues per Thai user community reports.
+**⚠ Character budget warning**: v5 hard-limits Style at 200 chars (silent truncation). v5.5 and v4.5 allow 1,000. If targeting v5 and the string is >200, either trim or recommend switching to v5.5. Front-load critical tags (genre, mood, vocal) so they survive truncation.
 
-**Never use real Thai artist names** — Suno blocks them silently. Use sonic descriptors instead. For example, instead of "Bodyslam-style", write `Thai stadium rock, anthemic, soaring male vocals, distorted electric guitars, big drums`. See `references/style-templates.md` for ready-made templates per sub-genre.
+**Always include a diction cue at the end:**
+- **Thai**: `clear native Thai diction` or `Thai vocals in Bangkok accent, no English drift` (for luk thung: `central Thai with Isan flavor`).
+- **English**: `crisp English diction`, `clear American English vocals`, or regional variant (`country drawl`, `British accent leaning RP`).
+- **Bilingual**: append `Thai verses with English chorus, no in-line mixing` or similar drift declaration.
+
+**Never use real artist names** — Suno blocks Thai AND Western artists silently. Use sonic descriptors. For Thai sub-genres see `references/style-templates-th.md`; for English see `references/style-templates-en.md`.
 
 ### Step 5 — Recommend slider settings
 
-Based on the chosen sub-genre, pick from this lookup (also in `references/suno-fields-reference.md`):
-
-| Sub-genre | Weirdness | Style Influence |
-|---|---|---|
-| Mainstream T-pop / radio pop | 25–35% | 70–85% |
-| Thai pop-rock / stadium rock | 35–50% | 65–80% |
-| Indie / Bangkok bedroom pop | 50–65% | 55–70% |
-| City pop / 80s pastiche | 20–30% | 80–95% |
-| Phleng phuea chiwit | 30–45% | 65–80% |
-| Pop-punk | 35–50% | 65–80% |
-| R&B / city ballad | 25–40% | 70–85% |
-| Luk thung / mor lam fusion | 40–60% | 60–75% |
+Based on the chosen sub-genre, look up Weirdness + Style Influence values in `references/suno-fields-reference.md` (separate Thai and English tables).
 
 Always state the chosen number, not a range, in the final output. Pick the midpoint of the range unless the user specified "experimental" or "very mainstream."
 
 ### Step 6 — Generate the Song Title
 
-The title is cosmetic in Suno (does not influence audio), but the user will see it. Pick something:
-- 2–6 Thai words (or short English/Thai mix)
+The title is cosmetic in Suno (does not influence audio), but the user will see it.
+
+- 2–6 Thai words (or short English / Thai+English mix) for Thai songs
+- 2–6 English words for English songs
 - Echoes the chorus hook phrase, OR uses a memorable image from the lyrics
-- ≤30 Thai characters is comfortable
+- ≤30 Thai chars / ≤40 English chars is comfortable
 
-### Step 7 — Run the เพี้ยน risk check AND the คำคล้องจอง rhyme audit
+### Step 6.5 — Auto-detect language for audit routing (NEW)
 
-Two separate audits, both done before finalizing. Both follow the "warn, don't auto-fix" rule: state the line, the issue, suggest a rewrite — let the user choose.
+After composing, scan the produced lyric to determine which audits to run. **Auto-detection is the authority** — even if the user picked "ไทยล้วน" at Step 1.4, if the lyric ends up containing English content, the English audits still run.
 
-**7a. เพี้ยน risk check** (full list in `references/pian-risk-checklist.md`):
+**Detection algorithm:**
 
-- Lines >12 syllables → split into two lines
-- Pali/Sanskrit compounds (สรรเสริญ, อัจฉริยภาพ) on fast sections → relocate or substitute
-- Initial consonant clusters (ปร, กล, คว, ปฏ) on stressed beats → consider hyphenating or rewriting
-- Mai-tho falling tone (เก่า, ก็, ค่อย) on long held notes → flag — the falling tone often becomes flat in Suno
-- Numbers, English acronyms → write out as Thai words
-- Same-line code-switching → split into two lines or move English to a `(echo)`
-- Short vowels (อิ, อะ, อุ) on long held notes → switch to long vowels if possible
+1. Strip `[bracket directives]` (they don't count).
+2. Strip pure ad-lib `(parens)` echoes ("oh oh oh", "la la la", "yeah", "uh").
+3. For each remaining sung line, count Thai script chars (U+0E00–U+0E7F) and Latin letters.
+4. Sum across all lines (excluding section markers like `Verse`, `Chorus`, `Bridge`, `Intro`, `Outro`, and language anchors `Thai`, `English`).
+5. Set flags:
+   - `audit_thai_pian` = (thai_chars ≥ 20)
+   - `audit_thai_khlong` = (thai_chars ≥ 20)
+   - `audit_english_prosody` = (latin_chars ≥ 20)
+   - `audit_english_rhyme` = (latin_chars ≥ 20)
+   - `audit_bilingual_mixing` = (thai_chars ≥ 20 AND latin_chars ≥ 20)
 
-**7b. คำคล้องจอง rhyme audit** (full checklist in Section 7 of `references/khlong-jong-rhyme.md`):
+**If the user's Step 1.4 choice contradicts detection** — e.g., they picked "ไทยล้วน" but the lyric has substantial English — surface a soft warning in Step 8's framing: "พบเนื้อหาภาษาอังกฤษในเพลงทั้งที่เลือก 'ไทยล้วน' — รัน English audit เพิ่มเติมให้ด้วย."
 
-- Does the chorus hook line rhyme with its partner? Title word on a rhyme position?
-- Are the (parens echoes) rhyming with the line above? If not, fix the echo word.
-- At least one สัมผัสใน per chorus line (vowel echo or alliteration)?
-- Verse end-rhyme scheme present (AABB / ABAB / AABA)? If 3+ unrhymed line-ends in a 4-line verse, flag.
-- Verse 2 shares at least one rhyme family with Verse 1 (cohesion)?
-- Any ขัดสัมผัส (almost-rhyme — same vowel but wrong final consonant, like ฟัง/ฟัน)? Flag as broken rhyme.
-- Same chorus end-rhyme family across all chorus repeats? (Should be identical text anyway.)
-- Forced rhymes that hurt meaning? Suggest a meaningful alternative or unrhymed line.
+### Step 7 — Run the audits (one per detected language, plus bilingual)
 
-Output both audits as separate sections in the final answer (see Step 8 template). 0–2 flags total = healthy; 3–5 = one section likely needs rework; 6+ = the lyrics need a redraft (offer to redraft on user request, don't do it unprompted).
+Each audit follows the "warn, don't auto-fix" rule: state the line, the issue, suggest a rewrite — let the user choose. Each audit is run independently and rendered as a separate block in Step 8.
 
-**Important: when the user pasted their own lyrics**, run BOTH audits on their text. If the rhyme scheme is systematically absent, say so directly ("เนื้อร้องนี้ยังไม่มี scheme คำคล้องจอง อาจฟังเหมือนพูดมากกว่าเหมือนเพลง — อยากให้ refactor ให้มั้ย?") and wait for the user to ask before rewriting.
+**7-A. Thai เพี้ยน Risk** (if `audit_thai_pian`) — apply `references/pian-risk-checklist.md`:
+- Lines >12 syllables → split
+- Pali/Sanskrit compounds on fast sections → relocate or substitute
+- Initial consonant clusters (ปร, กล, คว, ปฏ) on stressed beats → hyphenate or rewrite
+- Mai-tho falling tone on long held notes → flag
+- Numbers, English acronyms → write as Thai words
+- Same-line code-switching → split or move English to (echo)
+- Short vowels (อิ, อะ, อุ) on long held notes → switch to long vowels
+
+**7-B. English Pronunciation Risk** (if `audit_english_prosody`) — apply `references/english-diction-checklist.md`:
+- Homographs (read/live/lead/bass/tear/wind/wound/close/refuse/present/object/conduct/desert/produce/record/contract) → suggest contextual rewrite or synonym
+- Silent letters (knight/queue/colonel/choir/Wednesday) → phonetic respell or synonym
+- Loanwords (genre/fiancé/café) → flag if on stressed downbeat
+- Acronyms (AI/JR/ATM) → force the form you want (`A I` spaced or `aye`)
+- Numbers/dates → spell out
+- Lines >15 syllables → split
+- Closed vowels (uh/ih/eh) at line-end on chorus → swap for open vowel
+- Sibilant clusters on highest chorus note → rephrase
+- Function words on inferred downbeats → start with content word
+- Multi-syllable words with wrong dictionary stress → swap or restructure
+
+**7-C. Thai คำคล้องจอง Audit** (if `audit_thai_khlong`) — apply Section 7 of `references/khlong-jong-rhyme.md`:
+- Chorus hook rhymes with partner? Title on rhyme position?
+- (Parens echoes) rhyme with line above?
+- At least one สัมผัสใน per chorus line?
+- Verse scheme present (AABB / ABAB / AABA)?
+- Verse 2 shares rhyme family with Verse 1?
+- ขัดสัมผัส anywhere?
+- Chorus rhyme family constant across repeats?
+- Forced rhymes hurting meaning?
+
+**7-D. English Rhyme & Form Audit** (if `audit_english_rhyme`) — apply Section 8 of `references/rhyme-craft-en.md`:
+- Detect chorus scheme; rhyme density 50–75%?
+- Title appears in chorus (line 1, last, both, every line)?
+- Cliché pairs (fire/desire, heart/apart, etc.) — flag with family alternatives
+- Verse scheme detected? Verse 1 / Verse 2 share rhyme family?
+- Hook repetition count (≥3× per chorus)?
+- Bridge present for songs >2:30?
+- Show-don't-tell: chorus >50% feeling-words? Suggest concrete swap.
+
+**7-E. Bilingual Mixing Audit** (if `audit_bilingual_mixing`) — apply `references/bilingual-mixing.md` §7:
+- Same-line code-switching? Flag with split suggestion.
+- Section headers missing language anchor? Flag.
+- Drift declaration missing on dominant-language song? Soft flag.
+- Echo translation grammar issues? Flag.
+
+**Severity → summary mapping** (each audit independently):
+
+| Flag count | Summary |
+|---|---|
+| 0 | `clean` |
+| 1–2 | `minor` |
+| 3–5 | `rework_recommended` |
+| 6+ | `redraft_needed` |
+
+Never aggregate counts across audits — keep them independent. The user reads each block separately.
 
 ### Step 8 — Output the consolidated answer
 
-Use this exact template so the user can copy each block straight into Suno:
+Use this exact template. Section headers and ordering are load-bearing — do not reorganize casually.
 
 ```
-## 🎵 [Song Title in Thai]
+## 🎵 [Song Title]
 
 ### 📋 Styles (paste into Styles field)
 
 ```
 [comma-separated tags here]
 ```
+[⚠ N chars · note v5 budget warning if N > 200]
 
 ### 📝 Lyrics (paste into Lyrics field)
 
 ```
 [Intro]
-[Verse 1]
+[Verse 1] [(Thai) or (English) — only emit when bilingual]
 ...
 [Outro]
 ```
 
 ### ⚙️ Settings
 
-- **Vocal Gender:** [Male / Female]
+- **Vocal Gender:** [Male / Female / Duet]
 - **Weirdness:** [X]%
 - **Style Influence:** [Y]%
-- **Model:** v4.5+all (or v5 if user has Pro/Premier)
+- **Model:** [v4.5+all / v5 / v5.5]
 
+[If audit_thai_pian AND NOT audit_english_prosody — original Thai-only header for bit-identical regression with pre-refactor skill:]
 ### ⚠️ เพี้ยน Risk Flags
 
-- Line "...": [issue], suggest rewriting as "..."
-- (or: "ไม่พบจุดเสี่ยงสำคัญ" if clean)
+- บรรทัด "...": [issue], แนะนำเปลี่ยนเป็น "..."
+- (or `ไม่พบจุดเสี่ยงสำคัญ` if clean)
 
+[If audit_thai_pian AND audit_english_prosody — bilingual case, disambiguate:]
+### ⚠️ Pronunciation Risk Flags (Thai — เพี้ยน)
+
+- บรรทัด "...": [issue], แนะนำเปลี่ยนเป็น "..."
+- (or `ไม่พบจุดเสี่ยงสำคัญ` if clean)
+
+[If audit_english_prosody:]
+### ⚠️ Pronunciation Risk Flags (English)
+
+- Line "...": [issue], suggest rewriting as "..."
+- (or `No major risks detected` if clean)
+
+[If audit_thai_khlong AND NOT audit_english_rhyme — original Thai-only header:]
 ### 🎼 คำคล้องจอง Audit
 
-- บรรทัด "...": [rhyme issue, e.g. "ขัดสัมผัส กับ '...' (ฟัง /ŋ/ vs. ฟัน /n/)"], แนะนำเปลี่ยนเป็น "..."
-- (or: "scheme คำคล้องจอง ครบ — chorus AABB บน /ai/, verse ABAB บน /ɤː/, สัมผัสใน ครบทุกบรรทัด chorus" if clean)
+- บรรทัด "...": [rhyme issue], แนะนำเปลี่ยนเป็น "..."
+- (or `scheme คำคล้องจอง ครบ — [details]` if clean)
+
+[If audit_thai_khlong AND audit_english_rhyme — bilingual case, disambiguate:]
+### 🎼 Rhyme Audit (Thai — คำคล้องจอง)
+
+- บรรทัด "...": [rhyme issue], แนะนำเปลี่ยนเป็น "..."
+- (or `scheme คำคล้องจอง ครบ — [details]` if clean)
+
+[If audit_english_rhyme:]
+### 🎼 Rhyme Audit (English)
+
+- Line "...": [rhyme/form issue], suggest "..."
+- (or `Rhyme scheme: [X]; hook placement: line [N]; no major issues` if clean)
+
+[If audit_bilingual_mixing:]
+### 🌐 Bilingual Mixing Audit
+
+- Line "...": [issue], suggest "..."
+- (or `Section anchors present; no same-line code-switching detected` if clean)
 
 ### 🔁 Iteration Tips
 
 If take 1 isn't right:
-- ถ้า vibe ไม่ใช่: เพิ่ม Style Influence เป็น [Y+10]%, ลด Weirdness เป็น [X-10]%
-- ถ้าบรรทัด "..." ออกเสียงเพี้ยน: ใช้ Replace Section ใน Song Editor แล้วเขียนใหม่เป็น "..."
+- ถ้า vibe ไม่ใช่ / If vibe is off: เพิ่ม Style Influence เป็น [Y+10]%, ลด Weirdness เป็น [X-10]%
+- [language-aware tips per detected audits]
 - ถ้าอยากให้ track จำเสียงนี้: กด ⋮ → Make Persona ก่อน iterate
 - ถ้าเพลงดีแล้วแต่อยากยาวขึ้น: ใช้ Extend จากท้าย outro
 ```
 
+**Rendering rules:**
+- Audit blocks render in this order: Thai-pron → English-pron → Thai-rhyme → English-rhyme → Bilingual mixing. The order is fixed.
+- When no flags found for a language's audit, the block still renders with the "clean" message (so the user knows the audit was run and passed).
+- When no content for a language exists, the block is **omitted entirely**, not rendered empty.
+- The `⚠ [N] chars` budget line on Styles renders only when the Styles string is >150 chars.
+- Section anchors `(Thai)` / `(English)` after `[Verse 1]` etc. ONLY appear in bilingual songs.
+
 ## Edge cases and special handling
 
-**If the user already has lyrics they wrote:** skip Step 3 (composition), but still run BOTH Step 7a (เพี้ยน risk check) AND Step 7b (คำคล้องจอง rhyme audit) on their lyrics, and produce the rest of the prompt set. If the rhyme scheme is systematically absent, say so explicitly and offer to refactor — but wait for user approval before rewriting.
+**If the user already has lyrics they wrote:** skip Step 3 (composition). Auto-detect language in Step 6.5. Run all applicable audits in Step 7. Produce the rest of the prompt set. If a rhyme scheme is systematically absent (Thai: no คำคล้องจอง scheme; English: no detectable end-rhyme in a melodic genre), say so explicitly and offer to refactor — wait for user approval before rewriting.
 
-**If the user wants only instrumental:** check the "Instrumental" toggle in Suno; in this case, Lyrics field stays empty (or only `[Instrumental]` tags). Still produce Styles, Title, sliders.
+**If the user wants only instrumental:** check Suno's "Instrumental" toggle; Lyrics field stays empty (or only `[Instrumental]` tags). Still produce Styles, Title, sliders. No audits run.
 
-**If the user gives a reference song (e.g., "ทำเพลงให้คล้าย ABC ของศิลปิน X"):** never copy lyrics, never name the artist in Styles. Translate the *sonic descriptors* (era, instruments, mood, BPM) into the Styles field. Apply the "no artist names" rule from `references/suno-fields-reference.md`.
+**If the user gives a reference song** ("ทำเพลงให้คล้าย ABC ของศิลปิน X" or "make it sound like song Y by artist Z"): NEVER copy lyrics; NEVER name the artist in Styles. Translate the *sonic descriptors* (era, instruments, mood, BPM) into the Styles field. Apply the no-artist-names rule from `references/suno-fields-reference.md`.
 
-**If the user is on Free tier:** they're on v4.5-all (the free variant). All output works identically — no changes needed. Mention this in passing only if relevant.
+**If the user is on Free tier:** they're on v4.5-all (the free variant). Output works identically — but warn if they're trying to use v5 features they don't have.
 
-**For luk thung / mor lam fusion:** Suno's Thai-Isan diction is weakest here. Add aggressive pronunciation cues: `central Thai with Isan flavor, melismatic vocals with wide vibrato`, and warn the user that 2–3 regenerations are often needed for usable Isan delivery.
+**Targeting v5 (200-char Style limit):** if the composed Styles string is >200 chars, either trim or recommend switching to v5.5. Don't silently let truncation happen.
 
-**If the user asks for a duet / two singers:** put both genders in the Styles field (`mixed-gender vocals, male and female duet`) and use `[Female Vocal]` / `[Male Vocal]` tags inside lyrics on the lines where each voice should lead. Vocal Gender toggle is best left on whichever voice opens the song.
+**For luk thung / mor lam fusion:** Suno's Thai-Isan diction is weakest here. Add aggressive pronunciation cues (`central Thai with Isan flavor, melismatic vocals with wide vibrato`), and warn the user that 2–3 regenerations are often needed for usable Isan delivery.
+
+**If the user asks for a duet / two singers:** put both genders in Styles (`mixed-gender vocals, male and female duet`); use `[Female Vocal]` / `[Male Vocal]` tags inside lyrics on the lines where each voice should lead. Vocal Gender toggle on whichever voice opens the song.
+
+**If the user asks for a specific lyricist style** (e.g., "เขียนแบบฟองเบียร์ / ดี้ / ครูสลา / บอย / สุรักษ์"): load `references/lyricist-signatures-th.md` and apply that lyricist's signature rules. Note in the output framing that the technique is being applied.
+
+**Bilingual edge cases:**
+- *Primarily-English song with one Thai word* (e.g., "I miss you สวัสดี") — flag as same-line code-switching; suggest splitting into two lines or moving Thai to a (parens echo).
+- *Title in one language, body in another* — fine, but anchor sections clearly.
+- *User wants Korean/Japanese/Spanish mixed in* — the skill does not audit those languages. Apply the section-anchoring + echo-translation patterns from `references/bilingual-mixing.md`, but explain that no dedicated phonetic audit will run.
 
 **Length adjustments:**
-- Short (~2 min) — drop the second verse and the bridge: `[Intro] [Verse 1] [Chorus] [Verse 2] [Chorus] [Outro]`
-- Long (~5 min) — add a `[Instrumental Break]` or `[Guitar Solo]` (2–8 bars) before the bridge, and consider a final modulated chorus.
+- Short (~2 min) — drop the second verse and bridge: `[Intro] [Verse 1] [Chorus] [Verse 2] [Chorus] [Outro]`
+- Long (~5 min) — add `[Instrumental Break]` or `[Guitar Solo]` (2–8 bars) before the bridge; consider a modulated final chorus
 
 ## Communication style
 
-Ask the user in their language. Most users come in Thai — answer in Thai. If the user uses informal register (กู/มึง or casual), match it; otherwise, default to friendly polite Thai. The output template (Styles/Lyrics/Settings) stays in the standard format above regardless of conversation language.
+Match the user's language. Most users come in Thai — answer in Thai. If the user uses informal register (กู/มึง or casual), match it; otherwise default to friendly polite Thai. If the user uses English, answer in English. The output template (Styles/Lyrics/Settings/audits) stays in the standard format above regardless of conversation language.
 
-When showing the final output, lead with a 1-sentence framing in the user's language ("นี่คือชุด prompt สำหรับ Suno ครับ คัดลอกแต่ละช่องไปวางในแอปได้เลย"), then the template, then the iteration tips. Don't re-explain why each choice was made unless asked.
+When showing the final output, lead with a 1-sentence framing in the user's language ("นี่คือชุด prompt สำหรับ Suno ครับ คัดลอกแต่ละช่องไปวางในแอปได้เลย" / "Here's your Suno prompt set — paste each block into the matching field"), then the template, then iteration tips. Don't re-explain why each choice was made unless asked.
