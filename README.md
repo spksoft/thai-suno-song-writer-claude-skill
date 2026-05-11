@@ -99,7 +99,7 @@ Only `zip` and `make` are required (preinstalled on macOS/Linux).
 
 ## How releases work
 
-Every push to `main` triggers `.github/workflows/release.yml`, which rebuilds the skill and updates a rolling **`latest`** release. The `.skill` asset on that release always reflects the latest commit on `main`.
+Every push to `main` triggers `.github/workflows/release.yml`, which rebuilds the skill and publishes a new release tagged `vYYYY.MM.DD-HHMMSS-<short-sha>` (UTC). The newest release is always reachable at [`/releases/latest`](https://github.com/spksoft/thai-suno-song-writer-claude-skill/releases/latest) — `make_latest` is set on each build, so the link redirects to the most recent one.
 
 ## License
 
